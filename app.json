@@ -4,6 +4,10 @@
     "slug": "TextAssist",
     "version": "1.0.0",
     "orientation": "portrait",
+    "permissions": [
+      "CAMERA",
+      "CAMERA_ROLL"
+    ],
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
     "splash": {
@@ -12,16 +16,26 @@
       "backgroundColor": "#ffffff"
     },
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.pulcovamon.TextAssist"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.pulcovamon.TextAssist"
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "plugins": [
+      "expo-router"
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "eeaba185-bd69-4dc0-bd2f-99c8486e01b6"
+      }
     }
   }
 }
