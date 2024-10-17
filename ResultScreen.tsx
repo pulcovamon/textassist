@@ -104,7 +104,6 @@ const ResultScreen = ({ navigation, route }) => {
                 {
                   fontSize: textSize ? textSize : 32,
                   lineHeight: textSize ? 2 * textSize : 64,
-                  fontFamily: "Atkinson Hyperlegible",
                 },
               ]}
             >
@@ -152,9 +151,8 @@ const styles = StyleSheet.create({
   },
   resultText: {
     padding: 10,
-    textAlign: "center",
-    fontFamily: "Atkinson Hyperlegible",
-    fontWeight: "bold",
+    textAlign: "left",
+    fontFamily: "Atkinson-Hyperlegible-bold",
   },
 });
 
