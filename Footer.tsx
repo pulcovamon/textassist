@@ -12,7 +12,7 @@ const Footer = ({ navigation }) => {
       <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Camera')}>
         <Icon name="photo-camera" size={60} color="white" />
       </TouchableOpacity>
-      <TouchableOpacity style={styles.button} onPress={() => alert('Galerie bude dostupná brzy!')}>
+      <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Gallery')}>
         <Icon name="image" size={60} color="white" />
       </TouchableOpacity>
     </View>
@@ -32,10 +32,7 @@ const styles = StyleSheet.create({
   },
   button: {
     alignItems: 'center',
-  },
-  buttonText: {
-    color: 'white',
-    marginTop: 5,
+    padding: 10,
   },
 });
 
