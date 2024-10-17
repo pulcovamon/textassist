@@ -16,9 +16,9 @@ const CameraScreen = ({ navigation }) => {
     return (
       <View style={styles.container}>
         <Text style={styles.message}>
-          We need your permission to show the camera
+          Potřebujeme Vaše povolení k přístupu ke kameře.
         </Text>
-        <Button onPress={requestCameraPermission} title="Grant Permission" />
+        <Button onPress={requestCameraPermission} title="Povolit přístup" />
       </View>
     );
   }
@@ -54,7 +54,7 @@ const CameraScreen = ({ navigation }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingBottom: 80,
+    paddingBottom: 90,
   },
   buttonContainer: {
     flexDirection: "row",
@@ -87,6 +87,7 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "black",
   },
+  message: {},
 });
 
 export default CameraScreen;
