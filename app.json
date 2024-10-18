@@ -8,7 +8,7 @@
       "CAMERA",
       "CAMERA_ROLL"
     ],
-    "userInterfaceStyle": "light",
+    "userInterfaceStyle": "automatic",
     "splash": {
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"

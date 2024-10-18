@@ -7,13 +7,16 @@ import {
   TouchableOpacity,
   ActivityIndicator,
   StyleSheet,
+  useColorScheme,
 } from "react-native";
 import axios from "axios";
 import Footer from "./Footer";
 import Icon from "react-native-vector-icons/MaterialIcons";
-import { API_KEY } from 'react-native-dotenv';
+import { API_KEY } from "react-native-dotenv";
+import { createStyles, iconSize } from "./Styles";
 
 const ResultScreen = ({ navigation, route }) => {
+  const Styles = createStyles(useColorScheme());
   const { imageUri } = route.params;
   const [ocrResult, setOcrResult] = useState<string | null>(null);
   const [textSize, setTextSize] = useState<number>(26);
@@ -77,30 +80,36 @@ const ResultScreen = ({ navigation, route }) => {
   };
 
   return (
-    <View style={styles.container}>
+    <View style={Styles.container}>
       {loading ? (
-        <>
+        <View style={Styles.contentContainer}>
           <Image source={{ uri: imageUri }} style={styles.image} />
           <ActivityIndicator
             size="large"
             color="#0000ff"
-            style={styles.loading}
+            style={Styles.loading}
           />
-        </>
+        </View>
       ) : (
-        <>
+        <View style={Styles.contentContainer}>
           <View style={styles.buttonContainer}>
-            <TouchableOpacity onPress={minusTextSize} style={styles.button}>
-              <Icon name="remove" size={60} color="white" />
+            <TouchableOpacity
+              onPress={minusTextSize}
+              style={[Styles.button, Styles.roundButton]}
+            >
+              <Icon name="remove" size={iconSize} color="white" />
             </TouchableOpacity>
-            <TouchableOpacity onPress={plusTextSize} style={styles.button}>
-              <Icon name="add" size={60} color="white" />
+            <TouchableOpacity
+              onPress={plusTextSize}
+              style={[Styles.button, Styles.roundButton]}
+            >
+              <Icon name="add" size={iconSize} color="white" />
             </TouchableOpacity>
           </View>
-          <ScrollView>
+          <ScrollView style={Styles.contentContainer}>
             <Text
               style={[
-                styles.resultText,
+                Styles.resultText,
                 {
                   fontSize: textSize ? textSize : 32,
                   lineHeight: textSize ? 2 * textSize : 64,
@@ -110,7 +119,7 @@ const ResultScreen = ({ navigation, route }) => {
               {ocrResult}
             </Text>
           </ScrollView>
-        </>
+        </View>
       )}
       <Footer navigation={navigation} />
     </View>
@@ -118,41 +127,15 @@ const ResultScreen = ({ navigation, route }) => {
 };
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    paddingBottom: 80,
-  },
   image: {
     width: "100%",
     height: "80%",
-  },
-  loading: {
-    marginTop: 30,
   },
   buttonContainer: {
     flexDirection: "row",
     justifyContent: "space-around",
     marginTop: 60,
     marginBottom: 10,
-  },
-  button: {
-    backgroundColor: "#6200EE",
-    width: 80,
-    height: 80,
-    borderRadius: 50,
-    justifyContent: "center",
-    alignItems: "center",
-    marginHorizontal: 10,
-    shadowColor: "#000",
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.2,
-    shadowRadius: 5,
-    elevation: 5,
-  },
-  resultText: {
-    padding: 10,
-    textAlign: "left",
-    fontFamily: "Atkinson-Hyperlegible-bold",
   },
 });
 

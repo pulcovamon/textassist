@@ -1,10 +1,19 @@
-import React, { useRef, useState } from "react";
+import React, { useRef } from "react";
 import { CameraView, useCameraPermissions } from "expo-camera";
-import { View, Button, TouchableOpacity, Text, StyleSheet } from "react-native";
+import {
+  View,
+  Button,
+  TouchableOpacity,
+  Text,
+  StyleSheet,
+  useColorScheme,
+} from "react-native";
 import Icon from "react-native-vector-icons/MaterialIcons";
 import Footer from "./Footer";
+import { createStyles, iconSize } from "./Styles";
 
 const CameraScreen = ({ navigation }) => {
+  const Styles = createStyles(useColorScheme());
   const [cameraPermission, requestCameraPermission] = useCameraPermissions();
   const cameraViewRef = useRef(null);
 
@@ -14,8 +23,8 @@ const CameraScreen = ({ navigation }) => {
 
   if (!cameraPermission.granted) {
     return (
-      <View style={styles.container}>
-        <Text style={styles.message}>
+      <View style={Styles.container}>
+        <Text style={Styles.message}>
           Potřebujeme Vaše povolení k přístupu ke kameře.
         </Text>
         <Button onPress={requestCameraPermission} title="Povolit přístup" />
@@ -37,13 +46,16 @@ const CameraScreen = ({ navigation }) => {
   };
 
   return (
-    <View style={styles.container}>
+    <View style={Styles.container}>
       <View style={styles.cameraContainer}>
         <CameraView ref={cameraViewRef} style={styles.camera} facing="back" />
       </View>
       <View style={styles.buttonContainer}>
-        <TouchableOpacity style={styles.button} onPress={takePicture}>
-          <Icon name="add-a-photo" size={60} color="white" />
+        <TouchableOpacity
+          style={[Styles.roundButton, Styles.button]}
+          onPress={takePicture}
+        >
+          <Icon name="add-a-photo" size={iconSize} color="white" />
         </TouchableOpacity>
       </View>
       <Footer navigation={navigation} />
@@ -52,33 +64,11 @@ const CameraScreen = ({ navigation }) => {
 };
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    paddingBottom: 90,
-  },
   buttonContainer: {
     flexDirection: "row",
     justifyContent: "space-around",
     marginTop: 20,
-    marginBottom: 20,
-  },
-  button: {
-    backgroundColor: "#6200EE",
-    width: 100,
-    height: 100,
-    borderRadius: 50,
-    justifyContent: "center",
-    alignItems: "center",
-    marginHorizontal: 10,
-    shadowColor: "#000",
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.2,
-    shadowRadius: 5,
-    elevation: 5,
-  },
-  buttonText: {
-    fontSize: 60,
-    color: "white",
+    marginBottom: 110,
   },
   cameraContainer: {
     flex: 7,
@@ -87,7 +77,6 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "black",
   },
-  message: {},
 });
 
 export default CameraScreen;
