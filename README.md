@@ -16,7 +16,8 @@
 
 2. Install dependencies:
    ```npm install```
-3.Create ```.env``` file in root directory and insert there your API key in format: ```API_KEY="your api key"```. Sign up on [OCR Space](https://ocr.space/OCRAPI) and get the key.
+   
+3. Create ```.env``` file in root directory and insert there your API key in format: ```API_KEY="your api key"```. Sign up on [OCR Space](https://ocr.space/OCRAPI) and get the key.
 
 5. Install Expo GO on your phone.
 
